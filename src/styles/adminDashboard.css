@@ -1,0 +1,111 @@
+.admin-dashboard {
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.content h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.content p {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.box {
+  background: white;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.box h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #34495e;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.add-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.add-form input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  flex: 1 1 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-form button {
+  background-color: #2ecc71;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-form button:hover {
+  background-color: #27ae60;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background-color: #f9f9f9;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+li button:hover {
+  background-color: #c0392b;
+}
+
+@media (max-width: 768px) {
+  .add-form {
+    flex-direction: column;
+  }
+
+  .add-form input,
+  .add-form button {
+    width: 100%;
+  }
+}

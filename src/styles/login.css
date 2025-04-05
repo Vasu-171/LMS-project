@@ -1,0 +1,66 @@
+/* styles/login.css */
+
+/* Wrapper to center the login box */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the screen */
+    background-color: #f4f4f4;
+  }
+  
+  /* Actual container */
+  .login-container {
+    max-width: 400px;
+    width: 100%;
+    padding: 30px;
+    background: #fdfdfd;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .login-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .login-form input {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .login-form button:hover {
+    background-color: #218838;
+  }
+  
+  .error-text {
+    color: red;
+    margin: 10px 0;
+  }
+  
+  .signup-redirect {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  .signup-redirect a {
+    color: #28a745;
+    text-decoration: none;
+  }
+  

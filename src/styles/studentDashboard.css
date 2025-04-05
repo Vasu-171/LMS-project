@@ -1,0 +1,118 @@
+/* studentDashboard.css */
+.student-dashboard {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f4f9;
+}
+
+.content {
+  text-align: center;
+  margin-top: 50px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grid layout for courses */
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.course-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: left;
+  transition: transform 0.3s ease-in-out;
+  border: 1px solid #ddd;
+  height: 300px; /* Control card height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.course-card:hover {
+  transform: scale(1.05);
+}
+
+.course-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.course-card p {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.enroll-button {
+  background-color: #0066ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.enroll-button:hover {
+  background-color: #004bb5;
+}
+
+.enroll-button:active {
+  transform: scale(0.98);
+}
+
+/* Success Message */
+.success-popup {
+  background-color: #28a745;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+/* Enrolled Courses */
+.enrolled-courses {
+  margin-top: 50px;
+}
+
+.enrolled-courses-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grid layout for enrolled courses */
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.enrolled-course-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.enrolled-course-card h3 {
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.enrolled-course-card p {
+  color: #555;
+  font-size: 1rem;
+}
