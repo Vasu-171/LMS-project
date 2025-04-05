@@ -16,9 +16,49 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Learning Management System (LMS)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Description
+This is a Learning Management System (LMS) web application designed for educational institutions. The platform allows students to browse and enroll in courses, while teachers can manage and create courses. Admins can manage users (students and teachers). The application is built using Next.js (with TypeScript), Express.js, PostgreSQL, and styled with CSS.
+
+## Features
+- **Student Features**:
+  - View and browse available courses.
+  - Enroll in courses.
+  - View enrolled courses.
+  
+- **Teacher Features**:
+  - Manage and create courses.
+  - Enroll students in courses.
+  - View and remove enrolled students.
+  
+- **Admin Features**:
+  - Manage teachers and students.
+  - Create and delete courses.
+  
+- **Authentication**:
+  - User registration, login, and JWT-based authentication with role-based access (Student, Teacher, Admin).
+
+## Tech Stack
+- **Frontend**: 
+  - Next.js (with TypeScript)
+  - React (with hooks)
+  - CSS (for styling)
+
+- **Backend**:
+  - Node.js (with Express.js)
+  - JWT Authentication
+  - PostgreSQL (database)
+
+- **Authentication**: 
+  - JWT tokens with bcrypt for password hashing
+
+## Setup Instructions
+
+ Clone the repository
+```bash
+git clone https://github.com/Vasu-171/LMS-project.git
+cd LMS-project 
 
 ## Learn More
 
