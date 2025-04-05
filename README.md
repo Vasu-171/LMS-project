@@ -1,21 +1,3 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 # Learning Management System (LMS)
 
 ## Description
@@ -58,8 +40,25 @@ This is a Learning Management System (LMS) web application designed for educatio
  Clone the repository
 ```bash
 git clone https://github.com/Vasu-171/LMS-project.git
-cd LMS-project 
+cd LMS-project
 
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
