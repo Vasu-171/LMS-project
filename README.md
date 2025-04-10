@@ -1,3 +1,47 @@
+# Learning Management System (LMS)
+
+## Description
+This is a Learning Management System (LMS) web application designed for educational institutions. The platform allows students to browse and enroll in courses, while teachers can manage and create courses. Admins can manage users (students and teachers). The application is built using Next.js (with TypeScript), Express.js, PostgreSQL, and styled with CSS.
+
+## Features
+- **Student Features**:
+  - View and browse available courses.
+  - Enroll in courses.
+  - View enrolled courses.
+  
+- **Teacher Features**:
+  - Manage and create courses.
+  - Enroll students in courses.
+  - View and remove enrolled students.
+  
+- **Admin Features**:
+  - Manage teachers and students.
+  - Create and delete courses.
+  
+- **Authentication**:
+  - User registration, login, and JWT-based authentication with role-based access (Student, Teacher, Admin).
+
+## Tech Stack
+- **Frontend**: 
+  - Next.js (with TypeScript)
+  - React (with hooks)
+  - CSS (for styling)
+
+- **Backend**:
+  - Node.js (with Express.js)
+  - JWT Authentication
+  - PostgreSQL (database)
+
+- **Authentication**: 
+  - JWT tokens with bcrypt for password hashing
+
+## Setup Instructions
+
+ Clone the repository
+```bash
+git clone https://github.com/Vasu-171/LMS-project.git
+cd LMS-project
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -15,11 +59,6 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
@@ -28,9 +67,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
