@@ -58,199 +58,117 @@ const AdminDashboard = () => {
   }, [token]);
 
   const fetchTeachers = async () => {
-    try {
-      const res = await fetch('http://localhost:5000/api/users/teachers', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = await res.json();
-      setTeachers(data);
-    } catch (error) {
-      console.error('Error fetching teachers:', error);
-    }
+    const res = await fetch('http://localhost:5000/api/users/teachers', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    setTeachers(data);
   };
 
   const fetchStudents = async () => {
-    try {
-      const res = await fetch('http://localhost:5000/api/users/students', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = await res.json();
-      setStudents(data);
-    } catch (error) {
-      console.error('Error fetching students:', error);
-    }
+    const res = await fetch('http://localhost:5000/api/users/students', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    setStudents(data);
   };
 
   const fetchCourses = async () => {
-    try {
-      const res = await fetch('http://localhost:5000/api/courses', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = await res.json();
-      setCourses(data);
-    } catch (error) {
-      console.error('Error fetching courses:', error);
-    }
+    const res = await fetch('http://localhost:5000/api/courses', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    setCourses(data);
   };
 
   const handleAddTeacher = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const res = await fetch('http://localhost:5000/api/users/teachers', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(teacherForm),
-      });
-
-      const result = await res.json();
-
-      if (res.ok) {
-        alert(result.message || 'Teacher added successfully');
-        setTeacherForm({ name: '', email: '', password: '' });
-        fetchTeachers();
-      } else {
-        alert(result.error || 'Error adding teacher');
-      }
-    } catch (error) {
-      console.error('Error adding teacher:', error);
-      alert('Server error while adding teacher');
+    const res = await fetch('http://localhost:5000/api/users/teachers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(teacherForm),
+    });
+    const result = await res.json();
+    if (res.ok) {
+      alert('Teacher added');
+      setTeacherForm({ name: '', email: '', password: '' });
+      fetchTeachers();
+    } else {
+      alert(result.error || 'Failed');
     }
   };
 
   const handleDeleteTeacher = async (email: string) => {
-    if (!confirm(`Are you sure you want to delete ${email}?`)) return;
-
-    try {
-      const res = await fetch('http://localhost:5000/api/users/teachers', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const result = await res.json();
-
-      if (res.ok) {
-        alert(result.message || 'Teacher deleted successfully');
-        fetchTeachers();
-      } else {
-        alert(result.error || 'Failed to delete teacher');
-      }
-    } catch (error) {
-      console.error('Error deleting teacher:', error);
-      alert('Server error while deleting teacher');
-    }
+    if (!confirm(`Delete ${email}?`)) return;
+    const res = await fetch('http://localhost:5000/api/users/teachers', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ email }),
+    });
+    const result = await res.json();
+    if (res.ok) fetchTeachers();
   };
 
   const handleAddStudent = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const res = await fetch('http://localhost:5000/api/users/students', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(studentForm),
-      });
-
-      const result = await res.json();
-
-      if (res.ok) {
-        alert(result.message || 'Student added successfully');
-        setStudentForm({ name: '', email: '', password: '' });
-        fetchStudents();
-      } else {
-        alert(result.error || 'Error adding student');
-      }
-    } catch (error) {
-      console.error('Error adding student:', error);
-      alert('Server error while adding student');
+    const res = await fetch('http://localhost:5000/api/users/students', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(studentForm),
+    });
+    const result = await res.json();
+    if (res.ok) {
+      alert('Student added');
+      setStudentForm({ name: '', email: '', password: '' });
+      fetchStudents();
     }
   };
 
-  const handleDeleteStudent = async (email: string) => {
-    if (!confirm(`Are you sure you want to delete ${email}?`)) return;
-
-    try {
-      const res = await fetch('http://localhost:5000/api/users/students', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const result = await res.json();
-
-      if (res.ok) {
-        alert(result.message || 'Student deleted successfully');
-        fetchStudents();
-      } else {
-        alert(result.error || 'Failed to delete student');
-      }
-    } catch (error) {
-      console.error('Error deleting student:', error);
-      alert('Server error while deleting student');
-    }
+  const handleDeleteStudent = async (id: number) => {
+    if (!confirm('Delete student?')) return;
+    const res = await fetch(`http://localhost:5000/api/users/students/${id}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const result = await res.json();
+    if (res.ok) fetchStudents();
   };
 
   const handleAddCourse = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const res = await fetch('http://localhost:5000/api/courses/admin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(courseForm),
-      });
-
-      const result = await res.json();
-
-      if (res.ok) {
-        alert(result.message || 'Course added successfully');
-        setCourseForm({ name: '', description: '', teacher_id: '' });
-        fetchCourses();
-      } else {
-        alert(result.error || 'Error adding course');
-      }
-    } catch (error) {
-      console.error('Error adding course:', error);
-      alert('Server error while adding course');
+    const res = await fetch('http://localhost:5000/api/courses/admin', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(courseForm),
+    });
+    const result = await res.json();
+    if (res.ok) {
+      alert('Course added');
+      setCourseForm({ name: '', description: '', teacher_id: '' });
+      fetchCourses();
     }
   };
 
   const handleDeleteCourse = async (id: number) => {
-    if (!confirm(`Are you sure you want to delete this course?`)) return;
-
-    try {
-      const res = await fetch(`http://localhost:5000/api/courses/admin/${id}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const result = await res.json();
-
-      if (res.ok) {
-        alert(result.message || 'Course deleted successfully');
-        fetchCourses();
-      } else {
-        alert(result.error || 'Failed to delete course');
-      }
-    } catch (error) {
-      console.error('Error deleting course:', error);
-      alert('Server error while deleting course');
-    }
+    if (!confirm('Delete course?')) return;
+    const res = await fetch(`http://localhost:5000/api/courses/admin/${id}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const result = await res.json();
+    if (res.ok) fetchCourses();
   };
 
   if (!user) return null;
@@ -260,63 +178,85 @@ const AdminDashboard = () => {
       <DashboardNavbar />
       <div className="content">
         <h1>Welcome {user.name}</h1>
-        <p>Manage the entire LMS platform</p>
+        <p>Platform Management Panel</p>
 
-        {/* Teachers Section */}
-        <div className="box">
-          <h2>Teachers</h2>
-          <form onSubmit={handleAddTeacher} className="add-form">
-            <input type="text" placeholder="Name" value={teacherForm.name}
-              onChange={(e) => setTeacherForm({ ...teacherForm, name: e.target.value })} required />
-            <input type="email" placeholder="Email" value={teacherForm.email}
-              onChange={(e) => setTeacherForm({ ...teacherForm, email: e.target.value })} required />
-            <input type="password" placeholder="Password" value={teacherForm.password}
-              onChange={(e) => setTeacherForm({ ...teacherForm, password: e.target.value })} required />
-            <button type="submit">Add Teacher</button>
-          </form>
-          <ul>
-            {teachers.map((t) => (
-              <li key={t.id}>
-                {t.name} ({t.email}){' '}
-                <button onClick={() => handleDeleteTeacher(t.email)}>Delete</button>
-              </li>
-            ))}
-          </ul>
+        <div className="stats-container">
+          <div className="stat-card teacher-bg">
+            <h3>👩‍🏫 Teachers</h3>
+            <p>{teachers.length}</p>
+          </div>
+          <div className="stat-card student-bg">
+            <h3>🎓 Students</h3>
+            <p>{students.length}</p>
+          </div>
+          <div className="stat-card course-bg">
+            <h3>📚 Courses</h3>
+            <p>{courses.length}</p>
+          </div>
         </div>
 
-        {/* Students Section */}
-        <div className="box">
-          <h2>Students</h2>
-          <form onSubmit={handleAddStudent} className="add-form">
-            <input type="text" placeholder="Name" value={studentForm.name}
-              onChange={(e) => setStudentForm({ ...studentForm, name: e.target.value })} required />
-            <input type="email" placeholder="Email" value={studentForm.email}
-              onChange={(e) => setStudentForm({ ...studentForm, email: e.target.value })} required />
-            <input type="password" placeholder="Password" value={studentForm.password}
-              onChange={(e) => setStudentForm({ ...studentForm, password: e.target.value })} required />
-            <button type="submit">Add Student</button>
-          </form>
-          <ul>
-            {students.map((s) => (
-              <li key={s.id}>
-                {s.name} ({s.email}){' '}
-                <button onClick={() => handleDeleteStudent(s.email)}>Delete</button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <div className="grid-layout">
+          {/* TEACHERS */}
+          <div className="box">
+            <h2>Manage Teachers</h2>
+            <form onSubmit={handleAddTeacher} className="add-form">
+              <input type="text" placeholder="Name" value={teacherForm.name} onChange={(e) => setTeacherForm({ ...teacherForm, name: e.target.value })} required />
+              <input type="email" placeholder="Email" value={teacherForm.email} onChange={(e) => setTeacherForm({ ...teacherForm, email: e.target.value })} required />
+              <input type="password" placeholder="Password" value={teacherForm.password} onChange={(e) => setTeacherForm({ ...teacherForm, password: e.target.value })} required />
+              <button type="submit">Add Teacher</button>
+            </form>
+            <ul>
+              {teachers.map(t => (
+                <li key={t.id}>
+                  {t.name} ({t.email}){' '}
+                  <button onClick={() => handleDeleteTeacher(t.email)}>Delete</button>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Courses Section */}
-        <div className="box">
-          <h2>Courses</h2>
-          <ul>
-            {courses.map((c) => (
-              <li key={c.id}>
-                <strong>{c.name}</strong> - {c.description} (by {c.teacher_name}){' '}
-                <button onClick={() => handleDeleteCourse(c.id)}>Delete</button>
-              </li>
-            ))}
-          </ul>
+          {/* STUDENTS */}
+          <div className="box">
+            <h2>Manage Students</h2>
+            <form onSubmit={handleAddStudent} className="add-form">
+              <input type="text" placeholder="Name" value={studentForm.name} onChange={(e) => setStudentForm({ ...studentForm, name: e.target.value })} required />
+              <input type="email" placeholder="Email" value={studentForm.email} onChange={(e) => setStudentForm({ ...studentForm, email: e.target.value })} required />
+              <input type="password" placeholder="Password" value={studentForm.password} onChange={(e) => setStudentForm({ ...studentForm, password: e.target.value })} required />
+              <button type="submit">Add Student</button>
+            </form>
+            <ul>
+              {students.map(s => (
+                <li key={s.id}>
+                  {s.name} ({s.email}){' '}
+                  <button onClick={() => handleDeleteStudent(s.id)}>Delete</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* COURSES */}
+          <div className="box">
+            <h2>Manage Courses</h2>
+            <form onSubmit={handleAddCourse} className="add-form">
+              <input type="text" placeholder="Course Name" value={courseForm.name} onChange={(e) => setCourseForm({ ...courseForm, name: e.target.value })} required />
+              <input type="text" placeholder="Description" value={courseForm.description} onChange={(e) => setCourseForm({ ...courseForm, description: e.target.value })} required />
+              <select value={courseForm.teacher_id} onChange={(e) => setCourseForm({ ...courseForm, teacher_id: e.target.value })} required>
+                <option value="">Select Teacher</option>
+                {teachers.map(t => (
+                  <option key={t.id} value={t.id}>{t.name}</option>
+                ))}
+              </select>
+              <button type="submit">Add Course</button>
+            </form>
+            <ul>
+              {courses.map(c => (
+                <li key={c.id}>
+                  <strong>{c.name}</strong> - {c.description} (by {c.teacher_name}){' '}
+                  <button onClick={() => handleDeleteCourse(c.id)}>Delete</button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

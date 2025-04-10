@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useRouter } from 'next/router';
-import styles from '../styles/dashboardNavbar.module.css'; // ✅ Correct import
+import styles from '../styles/dashboardNavbar.module.css'; 
 
 const DashboardNavbar = () => {
   const { user, logout } = useAuth();
@@ -22,7 +22,7 @@ const DashboardNavbar = () => {
         LMS
       </div>
       <div className={styles.userDropdown}>
-        {/* ✅ Display only user name (without role & brackets) */}
+        {/*  Display  user name , email, role  */}
         <div className={styles.userInfo} onClick={toggleDropdown}>
           {user.name}
         </div>

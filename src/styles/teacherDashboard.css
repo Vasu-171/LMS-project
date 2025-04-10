@@ -1,171 +1,107 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f7fa;
-  color: #333;
-  line-height: 1.6;
-}
-
-/* Teacher Dashboard Layout */
 .teacher-dashboard {
-  display: flex;
-  flex-direction: column;
+  background-color: #f8fafc; /* Soft neutral background */
   min-height: 100vh;
+  padding-top: 80px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Navbar */
-.dashboard-navbar {
-  background-color: #1a202c;
-  padding: 1rem;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.dashboard-navbar h1 {
-  margin: 0;
-}
-
-.dashboard-navbar button {
-  background-color: #ff5c5c;
-  border: none;
-  color: white;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.dashboard-navbar button:hover {
-  background-color: #f44336;
-}
-
-/* Content */
-.content {
+.teacher-dashboard .content {
+  max-width: 1000px;
+  margin: auto;
   padding: 2rem;
-  flex-grow: 1;
 }
 
-/* Title and Intro */
-.content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: #2b6cb0;
+.teacher-dashboard h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.3rem;
+  color: #1a202c;
+  text-align: center;
 }
 
-.content p {
-  font-size: 1.2rem;
-  color: #2d3748;
+.teacher-dashboard p {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #4a5568;
 }
 
-/* Box Sections */
 .box {
-  background-color: #fff;
-  padding: 2rem;
-  margin-top: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.box:hover {
+  transform: translateY(-2px);
 }
 
 .box h2 {
-  font-size: 1.8rem;
-  color: #2b6cb0;
-  margin-bottom: 1.5rem;
-}
-
-.box ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.box li {
-  background-color: #f7fafc;
-  padding: 0.8rem 1.2rem;
-  margin: 0.5rem 0;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.box li button {
-  background-color: #ff5c5c;
-  border: none;
-  color: white;
-  padding: 0.3rem 0.8rem;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 0.9rem;
-}
-
-.box li button:hover {
-  background-color: #f44336;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #2d3748;
 }
 
 .add-form {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .add-form input,
-.add-form select,
-.add-form button {
-  padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+.add-form select {
+  flex: 1 1 300px;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e0;
   font-size: 1rem;
-  background-color: #fff;
-  transition: all 0.3s ease;
-}
-
-.add-form input:focus,
-.add-form select:focus,
-.add-form button:focus {
-  outline: none;
-  border-color: #3182ce;
 }
 
 .add-form button {
+  padding: 0.75rem 1.5rem;
   background-color: #3182ce;
-  color: #fff;
+  color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .add-form button:hover {
   background-color: #2b6cb0;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .teacher-dashboard {
-    padding: 1rem;
-  }
+ul {
+  list-style: none;
+  padding-left: 0;
+}
 
-  .content {
-    padding: 1.5rem;
-  }
+li {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .box {
-    padding: 1.5rem;
-  }
+li:last-child {
+  border-bottom: none;
+}
 
-  .box h2 {
-    font-size: 1.5rem;
-  }
+li button {
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease-in-out;
+}
 
-  .box li {
-    font-size: 0.9rem;
-  }
-
-  .add-form {
-    gap: 0.8rem;
-  }
+li button:hover {
+  background-color: #c53030;
 }

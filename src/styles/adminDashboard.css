@@ -1,111 +1,167 @@
 .admin-dashboard {
+  background-color: #f5f7fa;
   min-height: 100vh;
-  background-color: #f4f6f8;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.content {
+.admin-dashboard .content {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 2rem auto;
   padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.06);
 }
 
-.content h1 {
+.admin-dashboard h1 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
-  color: #2c3e50;
+  color: #1a202c;
 }
 
-.content p {
-  color: #7f8c8d;
-  margin-bottom: 2rem;
+.admin-dashboard p {
   font-size: 1rem;
+  color: #4a5568;
+  margin-bottom: 2rem;
 }
 
-.box {
-  background: white;
-  padding: 1.5rem;
+/* === Stats === */
+.stats-container {
+  display: flex;
+  gap: 1.5rem;
   margin-bottom: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1 1 30%;
+  padding: 1.5rem;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+.teacher-bg {
+  background: #3b82f6; /* blue */
+}
+
+.student-bg {
+  background: #10b981; /* green */
+}
+
+.course-bg {
+  background: #f59e0b; /* amber */
+}
+
+/* === Section Grid Layout === */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+/* === Boxes === */
+.box {
+  background-color: #fefefe;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .box h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #34495e;
-  border-bottom: 2px solid #eee;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #cbd5e0;
   padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  color: #2d3748;
 }
 
+/* === Forms === */
 .add-form {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
 }
 
-.add-form input {
-  padding: 0.5rem;
+.add-form input,
+.add-form select {
+  padding: 0.6rem 1rem;
   font-size: 1rem;
-  flex: 1 1 200px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e0;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.add-form input:focus,
+.add-form select:focus {
+  border-color: #3b82f6;
 }
 
 .add-form button {
-  background-color: #2ecc71;
+  background-color: #3b82f6;
   color: white;
   padding: 0.6rem 1.2rem;
   border: none;
-  font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 .add-form button:hover {
-  background-color: #27ae60;
+  background-color: #2563eb;
 }
 
-ul {
+/* === Lists === */
+.box ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin-top: 1rem;
 }
 
-li {
-  background-color: #f9f9f9;
-  padding: 0.7rem 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 4px;
+.box ul li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.95rem;
 }
 
-li button {
-  background-color: #e74c3c;
+.box ul li button {
+  background-color: #e53e3e;
   color: white;
   border: none;
   padding: 0.4rem 0.8rem;
-  font-size: 0.9rem;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  font-size: 0.85rem;
 }
 
-li button:hover {
-  background-color: #c0392b;
+.box ul li button:hover {
+  background-color: #c53030;
 }
 
+/* === Responsive === */
 @media (max-width: 768px) {
-  .add-form {
+  .stats-container {
     flex-direction: column;
   }
 
-  .add-form input,
-  .add-form button {
+  .stat-card {
     width: 100%;
   }
 }

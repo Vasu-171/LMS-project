@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from 'react';
 import { useRouter } from 'next/router';
 
 interface User {
@@ -18,36 +24,29 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const router = useRouter();
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    const storedToken = localStorage.getItem('token');
-  
-    if (
-      storedUser &&
-      storedUser !== 'undefined' &&
-      storedToken &&
-      storedToken !== 'undefined'
-    ) {
-      try {
-        const parsedUser: User = JSON.parse(storedUser);
-        setUser(parsedUser);
-        setToken(storedToken);
-      } catch (error) {
-        console.error("Failed to parse user from localStorage:", error);
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
+    if (typeof window !== 'undefined') {
+      const storedUser = localStorage.getItem('user');
+      const storedToken = localStorage.getItem('token');
+
+      if (storedUser && storedUser !== 'undefined' && storedToken && storedToken !== 'undefined') {
+        try {
+          setUser(JSON.parse(storedUser));
+          setToken(storedToken);
+        } catch (error) {
+          console.error('Error parsing stored user/token', error);
+          localStorage.removeItem('user');
+          localStorage.removeItem('token');
+        }
       }
-    } else {
-      // If stored values are 'undefined' or null, clean them up
-      localStorage.removeItem('user');
-      localStorage.removeItem('token');
+      setHasMounted(true);
     }
   }, []);
-  
 
   const login = (userData: User, tokenData: string) => {
     setUser(userData);
@@ -63,6 +62,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem('token');
     router.push('/login');
   };
+
+  if (!hasMounted) return null; // ✅ Prevent hydration mismatch
 
   return (
     <AuthContext.Provider value={{ user, token, login, logout }}>

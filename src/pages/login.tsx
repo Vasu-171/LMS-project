@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Navbar from '../components/Navbar'; // ✅ Add this
+import Navbar from '../components/Navbar'; 
 import '../styles/login.css';
 
 const LoginPage = () => {
@@ -44,7 +44,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <Navbar /> {/* ✅ Just added */}
+      <Navbar /> {/*  Just added */}
       <div className="login-wrapper">
         <div className="login-container">
           <h2>Login to Your Account</h2>

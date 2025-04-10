@@ -7,9 +7,7 @@ const { authenticateToken, authorizeRoles } = require('../middleware/auth');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secretkey';
 
-// =======================
-// 👤 AUTH ROUTES
-// =======================
+//  AUTH ROUTES
 
 // REGISTER - Public
 router.post('/register', async (req, res) => {
@@ -64,9 +62,9 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// =======================
-// 🔐 ADMIN ROUTES
-// =======================
+
+//  ADMIN ROUTES
+
 
 // Get all teachers
 router.get('/teachers', authenticateToken, authorizeRoles('admin'), async (req, res) => {
@@ -166,9 +164,9 @@ router.delete('/students/:id', authenticateToken, authorizeRoles('admin'), async
   }
 });
 
-// =======================
-// 📚 TEACHER ROUTES
-// =======================
+
+//  TEACHER ROUTES
+
 
 // Get students in a course
 router.get('/students/:courseId', authenticateToken, authorizeRoles('teacher'), async (req, res) => {
@@ -226,9 +224,9 @@ router.delete('/students', authenticateToken, authorizeRoles('teacher'), async (
   }
 });
 
-// =======================
-// 🎓 STUDENT ROUTES
-// =======================
+
+//  STUDENT ROUTES
+
 
 // Get all available courses
 router.get('/courses', authenticateToken, authorizeRoles('student'), async (req, res) => {
@@ -247,5 +245,42 @@ router.get('/courses', authenticateToken, authorizeRoles('student'), async (req,
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+// Student route - fetch enrolled courses
+router.get('/my-courses', authenticateToken, authorizeRoles('student'), async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT c.id, c.name, c.description, u.name AS teacher_name
+      FROM enrollments e
+      JOIN courses c ON e.course_id = c.id
+      JOIN users u ON c.teacher_id = u.id
+      WHERE e.student_id = $1
+    `, [req.user.id]);
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Error fetching enrolled courses:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Get student ID by email
+router.get('/get-student-id', authenticateToken, authorizeRoles('teacher'), async (req, res) => {
+  const { email } = req.query;
+  try {
+    const result = await pool.query(
+      'SELECT id FROM users WHERE email = $1 AND role = $2',
+      [email, 'student']
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('Get student ID error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 
 module.exports = router;

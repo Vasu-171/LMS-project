@@ -6,7 +6,7 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize('lms_db', 'postgres', 'Vasu17', {
   host: 'localhost',
   dialect: 'postgres',
-  logging: false, // Set true if you want to see SQL logs
+  logging: false, 
 });
 
 module.exports = sequelize;

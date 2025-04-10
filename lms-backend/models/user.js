@@ -21,7 +21,7 @@ const User = sequelize.define('User', {
   }
 }, {
   tableName: 'users',
-  timestamps: false // ✅ Tell Sequelize not to expect createdAt/updatedAt
+  timestamps: false 
 });
 
 module.exports = User;

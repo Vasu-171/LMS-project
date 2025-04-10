@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1e40af; /* Tailwind blue-800 */
+  background-color: #1e40af; 
   color: white;
   padding: 10px 20px;
   font-family: Arial, sans-serif;
@@ -26,8 +26,8 @@
   font-weight: bold;
   cursor: pointer;
   padding: 5px 10px;
-  color: white;          /* ✅ Ensure it's visible on blue navbar */
-  background: transparent; /* ✅ No background by default */
+  color: white;          
+  background: transparent; 
 }
 
 .dropdownMenu {
