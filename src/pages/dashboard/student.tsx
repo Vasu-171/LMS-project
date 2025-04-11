@@ -14,6 +14,7 @@ const StudentDashboard = () => {
   const [enrolledCourses, setEnrolledCourses] = useState<Course[]>([]);
   const [enrolledCourseIds, setEnrolledCourseIds] = useState<Set<number>>(new Set());
   const [successMessage, setSuccessMessage] = useState('');
+  const [visibleCourseId, setVisibleCourseId] = useState<number | null>(null);
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
   useEffect(() => {
@@ -77,6 +78,10 @@ const StudentDashboard = () => {
     }
   };
 
+  const toggleCourseContent = (courseId: number) => {
+    setVisibleCourseId((prev) => (prev === courseId ? null : courseId));
+  };
+
   return (
     <div className="student-dashboard">
       <DashboardNavbar />
@@ -86,6 +91,7 @@ const StudentDashboard = () => {
 
         {successMessage && <div className="success-popup">{successMessage}</div>}
 
+        {/* ======= Available Courses (Only Enroll Button) ======= */}
         <div className="courses-grid">
           {courses.map((course) => (
             <div key={course.id} className="course-card">
@@ -101,7 +107,7 @@ const StudentDashboard = () => {
           ))}
         </div>
 
-        {/* Enrolled Courses Section */}
+        {/* ======= Enrolled Courses Section (With View Content) ======= */}
         <div className="enrolled-courses">
           <h2>Your Enrolled Courses</h2>
           {enrolledCourses.length === 0 ? (
@@ -113,6 +119,25 @@ const StudentDashboard = () => {
                   <h3>{course.name}</h3>
                   <p>{course.description}</p>
                   <p><strong>Instructor:</strong> {course.teacher_name}</p>
+
+                  <button
+                    className="view-content-btn"
+                    onClick={() => toggleCourseContent(course.id)}
+                  >
+                    {visibleCourseId === course.id ? 'Hide Content' : 'View Content'}
+                  </button>
+
+                  {visibleCourseId === course.id && (
+                    <div className="course-content-box">
+                      <p><strong>📘 Course Content:</strong></p>
+                      <ul>
+                        <li>✔️ Introduction</li>
+                        <li>✔️ Lesson 1: Overview</li>
+                        <li>✔️ Lesson 2: Core Concepts</li>
+                        <li>📄 PDF: Resources & Materials</li>
+                      </ul>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

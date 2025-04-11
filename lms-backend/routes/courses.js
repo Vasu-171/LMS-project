@@ -23,7 +23,7 @@ router.post('/', authenticateToken, authorizeRoles('teacher'), async (req, res) 
   }
 });
 
-// ✅ Get courses - filters by user role
+//  Get courses - filters by user role
 router.get('/', authenticateToken, async (req, res) => {
   try {
     let result;

@@ -110,3 +110,25 @@
 .enrolled-courses {
   margin-top: 3rem;
 }
+
+.course-content-box {
+  background: #f3f4f6;
+  margin-top: 10px;
+  padding: 12px;
+  border-left: 4px solid #3b82f6;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.view-content-btn {
+  margin-top: 8px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.view-content-btn:hover {
+  background-color: #2563eb;
+}

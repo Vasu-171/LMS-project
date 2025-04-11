@@ -28,6 +28,9 @@ const TeacherDashboard = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [studentForm, setStudentForm] = useState({ email: '', course_id: '' });
   const [courseForm, setCourseForm] = useState({ name: '', description: '' });
+  const [courseStudents, setCourseStudents] = useState<EnrolledStudent[]>([]);
+
+
 
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
@@ -166,7 +169,23 @@ const TeacherDashboard = () => {
     }
   };
   
-
+  const handleViewStudents = async (courseId: number) => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/users/students/${courseId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setCourseStudents(data);
+        alert(`Fetched ${data.length} students for the course.`);
+      } else {
+        alert(data.message || 'Error fetching students');
+      }
+    } catch (err) {
+      console.error('Error fetching course students:', err);
+    }
+  };
+  
 
   if (!user) return null;
 
@@ -206,6 +225,9 @@ const TeacherDashboard = () => {
             {courses.map((course) => (
               <li key={course.id}>
                 <strong>{course.name}</strong> - {course.description}
+                <button onClick={() => handleViewStudents(course.id)}>
+                 View Students
+                </button>
               </li>
             ))}
           </ul>
